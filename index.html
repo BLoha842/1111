@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#4285f4">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <title>EGE-Prosto - Решение заданий №6</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">EGE-Prosto</h1>
+            <nav class="nav">
+                <a href="#home" class="nav-link active" data-page="home">Главная</a>
+                <a href="#turtle-basics" class="nav-link" data-page="turtle-basics">Основы Turtle</a>
+                <a href="#commands" class="nav-link" data-page="commands">Команды Turtle</a>
+                <a href="#examples" class="nav-link" data-page="examples">Примеры решений</a>
+            </nav>
+            <button class="menu-toggle" aria-label="Меню">☰</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div id="home" class="page active">
+            <div class="hero">
+                <h2>Справочник по решению задания №6</h2>
+                <p>по информатике с помощью модуля "Turtle" языка Python</p>
+                <button class="notify-btn" id="enableNotifications">🔔 Включить уведомления</button>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>📚 Основы модуля Turtle</h3>
+                    <p>Изучите базовые принципы работы с черепашьей графикой в Python</p>
+                    <a href="#turtle-basics" class="card-link">Перейти →</a>
+                </div>
+                <div class="card">
+                    <h3>⌨️ Основные команды</h3>
+                    <p>Полный список команд для управления черепашкой</p>
+                    <a href="#commands" class="card-link">Перейти →</a>
+                </div>
+                <div class="card">
+                    <h3>💡 Примеры решений</h3>
+                    <p>Разбор реальных заданий ЕГЭ с пошаговыми объяснениями</p>
+                    <a href="#examples" class="card-link">Перейти →</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="turtle-basics" class="page">
+            <h2>Основы модуля Turtle</h2>
+            <div class="content-card">
+                <h3>Что такое Turtle Graphics?</h3>
+                <p>Turtle Graphics (черепашья графика) — это система команд для управления виртуальной "черепашкой", которая оставляет след на экране.</p>
+                
+                <h3>Подключение модуля</h3>
+                <pre><code>import turtle</code></pre>
+                
+                <h3>Создание экрана и черепашки</h3>
+                <pre><code>screen = turtle.Screen()
+t = turtle.Turtle()</code></pre>
+                
+                <h3>Сохранённые заметки</h3>
+                <textarea class="note-editor" data-page="basics" placeholder="Добавьте свои заметки по основам Turtle..."></textarea>
+                <button class="save-note" data-page="basics">💾 Сохранить заметку</button>
+                <div class="saved-note" data-page="basics"></div>
+            </div>
+        </div>
+
+        <div id="commands" class="page">
+            <h2>Основные команды модуля "Turtle"</h2>
+            <div class="commands-grid">
+                <div class="command-card">
+                    <code>forward(distance)</code>
+                    <p>или <code>fd(distance)</code> - движение вперёд</p>
+                </div>
+                <div class="command-card">
+                    <code>backward(distance)</code>
+                    <p>или <code>bk(distance)</code> - движение назад</p>
+                </div>
+                <div class="command-card">
+                    <code>right(angle)</code>
+                    <p>или <code>rt(angle)</code> - поворот направо</p>
+                </div>
+                <div class="command-card">
+                    <code>left(angle)</code>
+                    <p>или <code>lt(angle)</code> - поворот налево</p>
+                </div>
+                <div class="command-card">
+                    <code>penup()</code>
+                    <p>или <code>pu()</code> - поднять перо</p>
+                </div>
+                <div class="command-card">
+                    <code>pendown()</code>
+                    <p>или <code>pd()</code> - опустить перо</p>
+                </div>
+                <div class="command-card">
+                    <code>goto(x, y)</code>
+                    <p>или <code>setpos(x, y)</code> - переместиться в точку</p>
+                </div>
+                <div class="command-card">
+                    <code>circle(radius)</code>
+                    <p>рисование окружности</p>
+                </div>
+            </div>
+            <div class="content-card">
+                <textarea class="note-editor" data-page="commands" placeholder="Добавьте свои заметки по командам..."></textarea>
+                <button class="save-note" data-page="commands">💾 Сохранить заметку</button>
+                <div class="saved-note" data-page="commands"></div>
+            </div>
+        </div>
+
+        <div id="examples" class="page">
+            <h2>Примеры решения задач №6</h2>
+            <div class="example-card">
+                <h3>Пример 1: Квадрат</h3>
+                <pre><code>import turtle
+
+t = turtle.Turtle()
+for i in range(4):
+    t.forward(100)
+    t.right(90)</code></pre>
+                <p>Результат: черепашка рисует квадрат со стороной 100 пикселей</p>
+            </div>
+            <div class="example-card">
+                <h3>Пример 2: Звезда</h3>
+                <pre><code>import turtle
+
+t = turtle.Turtle()
+for i in range(5):
+    t.forward(150)
+    t.right(144)</code></pre>
+                <p>Результат: рисуется пятиконечная звезда</p>
+            </div>
+            <div class="example-card">
+                <h3>Пример 3: Спираль</h3>
+                <pre><code>import turtle
+
+t = turtle.Turtle()
+t.speed(0)
+for i in range(100):
+    t.forward(i * 2)
+    t.right(91)</code></pre>
+                <p>Результат: красивая спираль</p>
+            </div>
+            <div class="content-card">
+                <textarea class="note-editor" data-page="examples" placeholder="Добавьте свои заметки по примерам..."></textarea>
+                <button class="save-note" data-page="examples">💾 Сохранить заметку</button>
+                <div class="saved-note" data-page="examples"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

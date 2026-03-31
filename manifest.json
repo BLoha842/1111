@@ -1,0 +1,23 @@
+{
+    "name": "EGE-Prosto",
+    "short_name": "EGE-Prosto",
+    "description": "Справочник по решению задания №6 ЕГЭ по информатике с модулем Turtle",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f5f5f5",
+    "theme_color": "#4285f4",
+    "icons": [
+        {
+            "src": "/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
