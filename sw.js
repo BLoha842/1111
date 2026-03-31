@@ -37,26 +37,73 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Push уведомления
+// Обработка push-уведомлений
 self.addEventListener('push', event => {
+    const data = event.data ? event.data.json() : {};
     const options = {
-        body: event.data ? event.data.text() : 'Новое обновление в справочнике!',
-        icon: '/icon-192.png',
+        body: data.body || 'Новое обновление в справочнике!',
+        icon: data.icon || '/icon-192.png',
         badge: '/icon-192.png',
         vibrate: [200, 100, 200],
         data: {
-            url: '/'
+            url: data.url || '/'
         }
     };
     
     event.waitUntil(
-        self.registration.showNotification('EGE-Prosto', options)
+        self.registration.showNotification(data.title || 'EGE-Prosto', options)
     );
 });
 
+// Обработка кликов по уведомлениям
 self.addEventListener('notificationclick', event => {
     event.notification.close();
+    
+    const urlToOpen = event.notification.data.url;
+    
     event.waitUntil(
-        clients.openWindow(event.notification.data.url)
+        clients.matchAll({
+            type: 'window',
+            includeUncontrolled: true
+        }).then(windowClients => {
+            // Проверяем, есть ли уже открытое окно
+            for (let client of windowClients) {
+                if (client.url === urlToOpen && 'focus' in client) {
+                    return client.focus();
+                }
+            }
+            // Если нет, открываем новое
+            if (clients.openWindow) {
+                return clients.openWindow(urlToOpen);
+            }
+        })
     );
+});
+
+// Обработка сообщений от клиента
+self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'SHOW_NOTIFICATION') {
+        self.registration.showNotification(event.data.title, {
+            body: event.data.body,
+            icon: event.data.icon || '/icon-192.png',
+            badge: '/icon-192.png',
+            vibrate: [200, 100, 200],
+            data: {
+                url: '/'
+            }
+        });
+    }
+});
+
+// Периодическая синхронизация (если поддерживается)
+self.addEventListener('periodicsync', event => {
+    if (event.tag === 'reminder') {
+        event.waitUntil(
+            self.registration.showNotification('EGE-Prosto', {
+                body: 'Пора повторить материал по Turtle!',
+                icon: '/icon-192.png',
+                badge: '/icon-192.png'
+            })
+        );
+    }
 });
